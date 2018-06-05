@@ -1,0 +1,52 @@
+# variables:
+#   PACKAGE_FOLDER: $CI_PROJECT_DIR/package/
+#   S3_DEV: s3://cdap-tvg-front-globostore
+
+# stages:
+#   - test
+#   - build
+#   - deploy
+
+# cache:
+#   paths:
+#     - $PACKAGE_FOLDER
+#     - $CI_PROJECT_DIR/node_modules
+
+# test:
+#   stage: test
+#   image: node:8
+#   script:
+#     - cd $CI_PROJECT_DIR
+#     - rm -rf node_modules
+#     - npm install --silent
+#     - npm run test
+
+# build:
+#   stage: build
+#   image: node:8
+#   dependencies:
+#     - test
+#   script:
+#     - npm run build
+#     - rm -rf $PACKAGE_FOLDER
+#     - mkdir $PACKAGE_FOLDER
+#     - cp -r index.html dist static $PACKAGE_FOLDER
+
+# deploy to dev:
+#   stage: deploy
+#   image: python:latest
+#   dependencies:
+#     - build
+#   environment:
+#     name: development
+#   script:
+#     - pip install awscli  # AWS CLI installation
+#     - aws s3 cp $PACKAGE_FOLDER $S3_DEV --recursive --acl public-read
+#   when: always
+#   artifacts:
+#     paths:
+#       - $PACKAGE_FOLDER
+#     expire_in: 1 day
+#   only:
+#     - tags
+#     - master

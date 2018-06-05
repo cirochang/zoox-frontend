@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="289px" height="42px" viewBox="0 0 289 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>GloboStore</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Marca" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-167.000000, -455.000000)" font-family="Arimo-Italic, Arimo" font-size="56" font-style="italic" font-weight="normal">
+        <g id="fundoClaro">
+            <g id="marca" transform="translate(165.000000, 287.000000)">
+                <g id="logotipo" transform="translate(0.000000, 158.000000)">
+                    <text id="GloboStore">
+                        <tspan x="0.2109375" y="51" fill="#666666">Globo</tspan>
+                        <tspan x="149.644531" y="51" font-family="Arimo-BoldItalic, Arimo" font-weight="bold" fill="#AA344E">Store</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
