@@ -3,11 +3,14 @@ import VueRouter from 'vue-router';
 
 import PageNotFound from '@/components/PageNotFound.vue';
 import System from '@/components/System.vue';
-import Manager from '@/components/system/container/Manager.vue';
-import ApplicationsList from '@/components/system/container/ApplicationsList.vue';
-import MyApplications from '@/components/system/container/manager/MyApplications.vue';
-import Application from '@/components/system/container/Application.vue';
-import CreateEditApplication from '@/components/system/container/manager/CreateEditApplication.vue';
+import Home from '@/components/system/container/Home.vue';
+import Cities from '@/components/system/container/Cities.vue';
+import States from '@/components/system/container/States.vue';
+import CreateCity from '@/components/system/container/cities/Create.vue';
+import CreateState from '@/components/system/container/states/Create.vue';
+import EditCity from '@/components/system/container/cities/Edit.vue';
+import EditState from '@/components/system/container/states/Edit.vue';
+
 
 Vue.use(VueRouter);
 
@@ -18,38 +21,41 @@ export default new VueRouter({
       component: System,
       children: [
         {
-          name: 'ApplicationsList',
+          name: 'Home',
           path: '/',
-          component: ApplicationsList
+          component: Home
         },
         {
-          name: 'Manager',
-          path: '/',
-          component: Manager,
-          children: [
-            {
-              name: 'MyApplications',
-              path: 'my_applications',
-              component: MyApplications
-            },
-            {
-              name: 'CreateApplication',
-              path: 'application/create',
-              component: CreateEditApplication
-            },
-            {
-              name: 'EditApplication',
-              path: 'application/:id/edit',
-              component: CreateEditApplication
-            }
-          ]
+          name: 'Cities',
+          path: '/cities',
+          component: Cities
         },
         {
-          name: 'Application',
-          path: '/application/:id',
-          component: Application
+          name: 'States',
+          path: '/states',
+          component: States
         },
-      ]
+        {
+          name: 'Create City',
+          path: '/cities/create',
+          component: CreateCity
+        },
+        {
+          name: 'Create State',
+          path: '/states/create',
+          component: CreateState
+        },
+        {
+          name: 'Edit City',
+          path: '/cities/edit',
+          component: EditCity
+        },
+        {
+          name: 'Edit State',
+          path: '/states/edit',
+          component: EditState
+        }
+      ],
     },
     {
       path: '*',
@@ -57,11 +63,4 @@ export default new VueRouter({
       component: PageNotFound,
     }
   ],
-  scrollBehavior (to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return { x: 0, y: 0 };
-    }
-  }
 });

@@ -1,6 +1,6 @@
-# Globo Store (front-end)
+# Zoox-frontend
 
- This is a front-end project write in Vue.
+ A simple vue frontend proposed by Zoox.
 
  To understand how the vue works I recommend reading this guide:
 [Official Vue Guide](https://vuejs.org/v2/guide/)
