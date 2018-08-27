@@ -55,7 +55,7 @@ export default {
                 this.$router.push("/states");
             }).catch(err => {
                 console.log(err);
-                this.errors = err.response.data;
+                this.errors = err.response.data.errors;
             })
         },
     },
