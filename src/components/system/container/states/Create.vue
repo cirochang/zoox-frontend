@@ -9,12 +9,13 @@
          <div class="box-body">
             <div class="row">
                <div class="col-md-6">
-                  <div class="form-group" v-bind:class="{'has-error': errors.name }">
+                   {{ !!(errors && !state.name) }}
+                  <div class="form-group" v-bind:class="{'has-error': !!errors.name }">
                      <label for="exampleInputEmail1">Name*</label>
                      <input type="name" v-model="state.name" class="form-control" placeholder="Ex: Rio de Janeiro">
                      <span class="help-block" v-if='errors.name'>{{errors.name.message}}</span>
                   </div>
-                  <div class="form-group" v-bind:class="{'has-error': errors.abbreviation }">
+                  <div class="form-group" v-bind:class="{'has-error': !!errors.abbreviation }">
                      <label for="exampleInputEmail1">Abbreviation*</label>
                      <input type="name" v-model="state.abbreviation" class="form-control" placeholder="Ex: RJ">
                      <span class="help-block" v-if='errors.abbreviation'>{{errors.abbreviation.message}}</span>
@@ -55,7 +56,7 @@ export default {
                 this.$router.push("/states");
             }).catch(err => {
                 console.log(err);
-                this.errors = err.response.data;
+                this.errors = err.response.data.errors;
             })
         },
     },

@@ -14,6 +14,23 @@
         </router-link>
         <div class="row">
           <div class="col-xs-12 table-responsive">
+            <div class="input-group" style="width: 400px;"> <!--Sorry for put css inline haha =) -->
+              
+              <input type="text" v-model="search.term" name="q" class="form-control" placeholder="Search..." v-on:input="refreshStates()">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat" v-on:click='refreshStates()'>
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+
+            <div class="checkbox">
+              <label for="drop-remove">
+                <input type="checkbox" id="drop-remove" v-model="search.isReverse" @change="refreshStates()">
+                Reverse
+              </label>
+            </div>
+          
             <table class="table table-striped">
               <thead>
               <tr>
@@ -52,7 +69,11 @@ import Moment from 'moment';
 export default {
   data() {
     return {
-      states: {},    
+      states: {},
+      search: {
+        term: "",
+        isReverse: false,
+      },  
     }
   },
   methods: {
@@ -60,7 +81,7 @@ export default {
       return Moment(date).locale('pt-br').format('LLLL');
     },
     refreshStates() {
-      Api.getStates().then(response => {
+      Api.getStates(this.search).then(response => {
         this.states = response.data;
       })
       .catch(error => {

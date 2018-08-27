@@ -58,12 +58,12 @@ export default {
                 this.$router.push("/cities");
             }).catch(err => {
                 console.log(err);
-                this.errors = err.response.data;
+                this.errors = err.response.data.errors;
             })
         },
     },
     beforeMount() {
-        Api.getStates().then(response => {
+        Api.getStates({term: "", isReverse: false}).then(response => {
             this.states = response.data;
         }).catch(err => {
             console.log(err);

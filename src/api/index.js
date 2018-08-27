@@ -3,6 +3,9 @@ import axios from 'axios';
 const BACKEND_API = () =>
   axios.create({
     baseURL: process.env.BACKEND_API_URI,
+    headers: {
+      'X-Api-Key': process.env.BACKEND_API_KEY
+    }
   });
 
 export default {
@@ -15,16 +18,12 @@ export default {
     return BACKEND_API().get(`/cities/${id}`);
   },
 
-  getStates () {
-    return BACKEND_API().get('/states');
-  },  
-
-  getCities () {
-    return BACKEND_API().get('/cities');
+  getStates ({term, isReverse}) {
+    return BACKEND_API().get(`/states?name=${term}&sort_by=name${isReverse ? ',desc' : ''}`);
   },
 
-  getStates () {
-    return BACKEND_API().get('/states');
+  getCities ({term, isReverse}) {
+    return BACKEND_API().get(`/cities?name=${term}&sort_by=name${isReverse ? ',desc' : ''}`);
   },
 
   createState (state) {

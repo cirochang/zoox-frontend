@@ -14,17 +14,39 @@
         </router-link>
         <div class="row">
           <div class="col-xs-12 table-responsive">
+
+            <div class="input-group" style="width: 400px;"> <!--Sorry for put css inline haha =) -->
+              
+              <input type="text" v-model="search.term" name="q" class="form-control" placeholder="Search..." v-on:input="refreshCities()">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat" v-on:click='refreshCities()'>
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+
+            <div class="checkbox">
+              <label for="drop-remove">
+                <input type="checkbox" id="drop-remove" v-model="search.isReverse" @change="refreshCities()">
+                Reverse
+              </label>
+            </div>
+
             <table class="table table-striped">
               <thead>
               <tr>
                 <th>Name</th>
                 <th>State Id</th>
+                <th>Created At</th>
+                <th>Updated At</th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="city in cities">
                 <td>{{city.name}}</td>
                 <td>{{city.stateId}}</td>
+                <td>{{formatDate(city.createdAt)}}</td>
+                <td>{{formatDate(city.updatedAt)}}</td>
                 <td>
                     <div class="btn-group">
                     <router-link tag="button" :to="{name: 'Edit City', params: { cityId: city._id }}" type="button" class="btn btn-warning">Edit</router-link>
@@ -49,15 +71,19 @@ import Moment from 'moment';
 export default {
   data() {
     return {
-      cities: {},    
+      cities: {},
+      search: {
+        term: "",
+        isReverse: false,
+      },
     }
   },
   methods: {
     formatDate(date) {
-        return Moment(date).locale('pt-br');
+      return Moment(date).locale('pt-br').format('LLLL');
     },
     refreshCities() {
-      Api.getCities().then(response => {
+      Api.getCities(this.search).then(response => {
         this.cities = response.data;
       })
       .catch(error => {
