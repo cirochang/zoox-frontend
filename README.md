@@ -26,7 +26,6 @@ npm run build
     │   ├── assets              # Css, Sass and images files
     │   ├── components          # Vue components files
     │   ├── router              # Router for endpoints of this project
-    │   ├── store               # Vuex (like Redux) stores
     │   ├── App.vue             # First Vue component that is called in all endpoints
     │   └── main.js             # Responsible for startup everything that Vue needs
     ├── static                  # Static files (icons, images, etc...)
